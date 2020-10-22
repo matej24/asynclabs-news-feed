@@ -1,10 +1,11 @@
 import React, {useState, useEffect, useRef} from 'react'
 import {useParams, useHistory} from "react-router-dom"
 import {
-    EmailShareButton, EmailIcon, 
-    FacebookShareButton, FacebookIcon, 
-    WhatsappShareButton, WhatsappIcon} from "react-share"
+        EmailShareButton, EmailIcon, 
+        FacebookShareButton, FacebookIcon, 
+        WhatsappShareButton, WhatsappIcon} from "react-share"
 import axios from "../../axios";
+import Spinner from '../../components/Spinner/Spinner';
 import "./NewsVideo.css";
 
 const NewsVideo = () => {
@@ -15,6 +16,14 @@ const NewsVideo = () => {
     const [videoUrl, setVideoUrl] = useState("");
     const [videoPlay, setVideoPlay] = useState(false);
 
+    // FETCH VIDEO LINK FOR PROVIDED ID
+    useEffect(() => {
+        axios.get(`/post/${id}`).then((res) => {
+            setVideoUrl(res.data.video.url)
+        })
+    }, [id])
+
+    //PLAY/STOP VIDEO PLAYING ON CLICK
     const videoPlayHandler = () => {
         setVideoPlay(!videoPlay);
         if(videoPlay) {
@@ -22,18 +31,12 @@ const NewsVideo = () => {
         }else {
             videoRef.current.pause()
         }
-    }
-
-    useEffect(() => {
-        axios.get(`/post/${id}`).then((res) => {
-            setVideoUrl(res.data.video.url)
-        })
-    }, [id])
+    }  
 
     return (
         <div className="newsVideo__container">
             <h1>Video ID: {id}</h1>
-            <video ref={videoRef} src={videoUrl} onClick={videoPlayHandler} />
+            {!videoUrl ? <Spinner/> : <video ref={videoRef} src={videoUrl} onClick={videoPlayHandler} />}
             <div className="newsVideo__shareIcons">
                 <EmailShareButton url={window.location.href} body={`Check this video ${id} out`}>
                     <EmailIcon size={32} round={true} /> 
@@ -46,7 +49,6 @@ const NewsVideo = () => {
                 </WhatsappShareButton>
             </div>            
             <button className="newsVideo__button-back" onClick={() => history.goBack()}>Go back</button>
-
         </div>
     )
 }

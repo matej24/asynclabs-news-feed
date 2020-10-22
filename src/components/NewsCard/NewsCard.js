@@ -24,7 +24,7 @@ const NewsCard = ({videoUrl, description, athleteName, athleteAge, athleteClub, 
                 <div className="newsCard__content__details">
                     <div><FaRegEye/>&nbsp;{views} </div>
                     <div><MdAccessTime />&nbsp;{postedAgo}</div></div>
-            </div>     
+                </div>     
         </div>
     )
 }
