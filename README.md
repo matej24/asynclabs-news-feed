@@ -8,6 +8,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 * [x] Using JS to manipulate data
 
+* [x] Search news feed
+
 * [x] Routes, manipulating params and fetching data using Params
 
 * [x] Video previews on mouse hover / Card clicks lead to natural size of video
