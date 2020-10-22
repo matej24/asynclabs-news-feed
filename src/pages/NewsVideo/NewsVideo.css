@@ -1,0 +1,39 @@
+.newsVideo__container {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+}
+
+.newsVideo__container > video {
+  min-width: 350px;
+  height: auto;
+  position: relative;
+  border: 4px solid #008b8b;
+  cursor: pointer;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4);
+}
+
+.newsVideo__shareIcons {
+  margin: 20px;
+}
+.newsVideo__shareIcons > button {
+  margin: 0 5px;
+}
+
+.newsVideo__button-back {
+  width: 150px;
+  height: 40px;
+  background-color: #008b8b;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  border: none;
+  margin: 20px 0;
+  transition: transform 1s;
+  outline-width: 0;
+}
+
+.newsVideo__button-back:hover {
+  transform: scale(1.1);
+}
